@@ -70,6 +70,7 @@
                 <a href="<?= base_url($file['file_path']) ?>"><?= esc($file['filename']) ?></a>
                 - <a href="<?= base_url($file['file_path']) ?>" download>Unduh ZIP</a>
             </li>
+
             <?php endforeach; ?>
             <?php else: ?>
             <li><?= esc($message ?: 'Tidak ada file ditemukan.') ?></li>

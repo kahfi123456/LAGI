@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\FileModel;
+use App\Models\FileFacultyModel;
 
 class FileManagerController extends BaseController
 {
@@ -32,51 +33,11 @@ class FileManagerController extends BaseController
 
     public function faculty($faculty)
     {
-        // Validasi fakultas
-        $validFaculties = ['FE', 'FHISIP', 'FKIP', 'FST', 'PPS'];
-        if (!in_array($faculty, $validFaculties)) {
-            $this->logger->error('Invalid faculty accessed: ' . $faculty);
-            return redirect()->to('/filemanager')->with('error', 'Fakultas tidak valid.'); // Redirect jika fakultas tidak valid
-        }
-
-        // Mengambil file berdasarkan fakultas dari database
+        $fileModel = new FileFacultyModel(); // Pastikan menggunakan FileFacultyModel
         $data['faculty'] = $faculty;
-        $data['files'] = $this->fileModel->where('faculty', $faculty)->findAll();
-
-        // Jika tidak ada file ditemukan
-        if (empty($data['files'])) {
-            $data['message'] = 'Tidak ada file ditemukan untuk fakultas ' . esc($faculty) . '.';
-        }
-
-        return view('file_manager/faculty', $data); // Menampilkan view faculty
+        $data['files'] = $fileModel->getFilesByFaculty($faculty); // Mengambil file berdasarkan fakultas
+        echo view('file_manager/faculty', $data);
     }
-
-  public function search()
-{
-    // Mendapatkan query pencarian dari URL
-    $query = $this->request->getGet('query');
-
-    // Validasi input query
-    if (empty($query)) {
-        return redirect()->to('/filemanager')->with('error', 'Query pencarian tidak boleh kosong.');
-    }
-
-    // Mengambil file berdasarkan query pencarian
-    $data['files'] = $this->fileModel->like('filename', $query) // Pastikan kolom ini sesuai
-                                      ->orLike('faculty', $query)
-                                      ->findAll();
-
-    // Jika tidak ada file ditemukan
-    if (empty($data['files'])) {
-        $data['message'] = 'Tidak ada file ditemukan untuk pencarian "' . esc($query) . '".';
-    }
-
-    // Tambahkan variabel query ke data
-    $data['query'] = $query;
-
-    return view('file_manager/search_results', $data);
-}
-
 
     public function download($id)
     {
@@ -161,4 +122,19 @@ class FileManagerController extends BaseController
 
         return redirect()->to('/filemanager')->with('message', 'File berhasil diupload.');
     }
+public function search()
+{
+    $keyword = $this->request->getGet('query');
+    $files = $this->fileModel->searchFiles($keyword);
+
+    // Pastikan untuk mengirimkan $keyword sebagai $query
+    return view('file_manager/search_results', [
+        'files' => $files,
+        'query' => $keyword, // Mengirimkan keyword ke view
+        'message' => empty($files) ? 'Tidak ada file ditemukan.' : ''
+    ]);
+}
+
+
+   
 }
