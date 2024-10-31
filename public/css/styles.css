@@ -1,0 +1,169 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aqua;
+    background-position: center;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo styling */
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+}
+
+/* Welcome text styling */
+.welcome-text {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-text h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.welcome-text p, .welcome-text h2 {
+    font-size: 16px;
+    color: #666;
+}
+
+.welcome-text h2 {
+    color: #007bff;
+    margin-top: 20px;
+}
+
+/* Search bar styling */
+.search-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Faculty list styling */
+ul.faculty-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 20px 0;
+}
+
+ul.faculty-list li {
+    list-style-type: none;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+ul.faculty-list li:hover {
+    transform: scale(1.05);
+}
+
+ul.faculty-list li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+ul.faculty-list li a:hover {
+    color: #0056b3;
+}
+
+/* Search results styling */
+.search-results ul {
+    margin-top: 20px;
+}
+
+.search-results li {
+    padding: 15px;
+    background: #e9f5ff;
+    border: 1px solid #cce0ff;
+}
+
+.search-results li a {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.search-results li a:hover {
+    color: #003366;
+    text-decoration: underline;
+}
+
+.search-results .message {
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
